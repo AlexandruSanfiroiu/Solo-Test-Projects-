@@ -5,13 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.time.Duration;
 
 public class LoginPage {
-    private static final Logger log = LoggerFactory.getLogger(LoginPage.class);
     WebDriver driver;
     WebDriverWait wait;
 
@@ -33,18 +31,28 @@ public class LoginPage {
     @FindBy(css = "div[class=\"oxd-layout-container\"]")
     private WebElement assertLogin;
 
-   public WebElement getAssertLogin(){
+    @FindBy(css = "p[class=\"oxd-text oxd-text--p oxd-alert-content-text\"]")
+    private WebElement assertError;
+
+    public WebElement getAssertLogin(){
        return assertLogin;
-   }
+    }
+    public WebElement getAssertError(){
+        return assertError;
+    }
 
     public void fillTheLoginCredentials(){
         usernameInput.sendKeys("Admin");
         passwordInput.sendKeys("admin123");
     }
+    public void fillTheLoginWithInvalidCredentials(){
+        usernameInput.sendKeys("user");
+        passwordInput.sendKeys("password");
+    }
 
 
 
-    public void login(){
+    public void clickTheLoginButton(){
         loginButton.click();
     }
 
