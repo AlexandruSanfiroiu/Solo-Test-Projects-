@@ -7,17 +7,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.UtilCodes;
 
 import java.time.Duration;
 import java.util.List;
 
-public class PimPage {
+public class PimPage extends UtilCodes {
     WebDriver driver;
     WebDriverWait wait;
 
     public PimPage(WebDriver driver){
-        this.driver=driver;
-        this.wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -27,27 +27,26 @@ public class PimPage {
     @FindBy(xpath = "(//a[@class=\"oxd-topbar-body-nav-tab-item\"])[3]")
     private WebElement reportsSection;
 
-    By listAssert=By.xpath("//div[@class=\"oxd-table-cell oxd-padding-cell\"]//div[not(*)]");
+
 
 
 
     public void openThePimPage(){
         pimPageOption.click();
+        scrollToTheList(listAssert);
 
 
     }
 
     public void goToTheReportsSection(){
         reportsSection.click();
+        scrollToTheList(listAssert);
     }
 
 
 
 
-    public List<WebElement> findListAssert() {
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(listAssert));
-        return driver.findElements(listAssert);
-    }
+
 
 
 

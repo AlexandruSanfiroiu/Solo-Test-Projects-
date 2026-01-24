@@ -2,7 +2,6 @@ package OrangeHRM_Tests;
 
 import OrangeHRM_Pages.LoginPage;
 import OrangeHRM_Pages.PimPage;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -27,7 +26,6 @@ public class PimTest extends BasePage {
         Assert.assertTrue(!employees.isEmpty(), "Reports List is empty");
 
         for(WebElement element: pim.findListAssert()){
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",element);
             Assert.assertFalse(element.getText().isEmpty());
 
 
@@ -49,7 +47,6 @@ public class PimTest extends BasePage {
         Assert.assertTrue(!reports.isEmpty(), "Reports List is empty");
 
     for(WebElement element: pim.findListAssert()){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", element);
         Assert.assertFalse(element.getText().isEmpty());
     }
 

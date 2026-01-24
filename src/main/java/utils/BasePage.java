@@ -1,5 +1,6 @@
 package utils;
 
+import OrangeHRM_Pages.LoginPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-public class BasePage {
+public class BasePage  {
 
     public static WebDriver driver;
     public Logger logger;
@@ -27,6 +28,7 @@ public class BasePage {
         driver=new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+
 
     }
 

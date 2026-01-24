@@ -32,13 +32,19 @@ public class LoginPage {
     private WebElement assertLogin;
 
     @FindBy(css = "p[class=\"oxd-text oxd-text--p oxd-alert-content-text\"]")
-    private WebElement assertError;
+    private WebElement assertInvalidCredentialsError;
+
+    @FindBy(css = "span[class=\"oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message\"]")
+    private WebElement assertNoCredentialsError;
 
     public WebElement getAssertLogin(){
        return assertLogin;
     }
-    public WebElement getAssertError(){
-        return assertError;
+    public WebElement getAssertInvalidCredentialsError(){
+        return assertInvalidCredentialsError;
+    }
+    public WebElement getAssertNoCredentialsError(){
+        return assertNoCredentialsError;
     }
 
     public void fillTheLoginCredentials(){
