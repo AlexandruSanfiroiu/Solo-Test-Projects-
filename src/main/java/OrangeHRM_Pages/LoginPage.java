@@ -37,6 +37,7 @@ public class LoginPage {
     @FindBy(css = "span[class=\"oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message\"]")
     private WebElement assertNoCredentialsError;
 
+
     public WebElement getAssertLogin(){
        return assertLogin;
     }

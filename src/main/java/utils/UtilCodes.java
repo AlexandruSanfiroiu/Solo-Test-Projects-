@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -32,7 +31,7 @@ public class UtilCodes {
         return driver.findElements(listAssert);
     }
 
-    public void scrollToTheList(By elements){
+    public void scrollToTheElement(By elements){
        WebElement target=wait.until(ExpectedConditions.presenceOfElementLocated(elements));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",target);
 

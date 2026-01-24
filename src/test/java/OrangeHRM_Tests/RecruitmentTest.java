@@ -12,15 +12,34 @@ import java.util.List;
 public class RecruitmentTest extends BasePage {
 
     @Test
-    public void Recruitments_List_Test(){
+    public void Candidates_List_Test(){
         LoginPage loginPage=new LoginPage(driver);
         RecruitmentPage recruitmentPage=new RecruitmentPage(driver);
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         loginPage.fillTheLoginCredentials();
         loginPage.clickTheLoginButton();
         recruitmentPage.openTheRecruitmentPage();
+        recruitmentPage.scrollToTheList();
         List<WebElement> recruitments=recruitmentPage.findListAssert();
-        Assert.assertTrue(!recruitments.isEmpty(),"Recruitments is empty");
+        Assert.assertTrue(!recruitments.isEmpty(),"Candidates list is empty");
+
+        for(WebElement element:recruitments){
+            Assert.assertFalse(element.getText().isEmpty());
+        }
+
+    }
+
+    @Test
+    public void Vacancies_List_Test(){
+        LoginPage loginPage=new LoginPage(driver);
+        RecruitmentPage recruitmentPage=new RecruitmentPage(driver);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        loginPage.fillTheLoginCredentials();
+        loginPage.clickTheLoginButton();
+        recruitmentPage.openTheRecruitmentPage();
+        recruitmentPage.scrollToTheList();
+        List<WebElement> recruitments=recruitmentPage.findListAssert();
+        Assert.assertTrue(!recruitments.isEmpty(),"Vacancies list is empty");
 
         for(WebElement element:recruitments){
             Assert.assertFalse(element.getText().isEmpty());
