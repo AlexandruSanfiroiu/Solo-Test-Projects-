@@ -24,7 +24,8 @@ public class RecruitmentTest extends BasePage {
         Assert.assertTrue(!recruitments.isEmpty(),"Candidates list is empty");
 
         for(WebElement element:recruitments){
-            Assert.assertFalse(element.getText().isEmpty());
+            Assert.assertFalse(element.getText().isEmpty(),"Some text are missing");
+
         }
 
     }
@@ -37,13 +38,30 @@ public class RecruitmentTest extends BasePage {
         loginPage.fillTheLoginCredentials();
         loginPage.clickTheLoginButton();
         recruitmentPage.openTheRecruitmentPage();
+        recruitmentPage.openTheVacancySection();
         recruitmentPage.scrollToTheList();
         List<WebElement> recruitments=recruitmentPage.findListAssert();
-        Assert.assertTrue(!recruitments.isEmpty(),"Vacancies list is empty");
+        Assert.assertTrue(!recruitments.isEmpty(), "Vacancies list is empty");
 
         for(WebElement element:recruitments){
+
             Assert.assertFalse(element.getText().isEmpty());
         }
 
+    }
+
+    @Test
+    public void Add_Candidate_Application_Test(){
+        LoginPage loginPage=new LoginPage(driver);
+        RecruitmentPage recruitmentPage=new RecruitmentPage(driver);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        loginPage.fillTheLoginCredentials();
+        loginPage.clickTheLoginButton();
+        recruitmentPage.openTheRecruitmentPage();
+        recruitmentPage.addCandidate();
+        //Important note:At vacancy option you need you select the exact vacancy option you have and you can use only numbers at contact number.
+        recruitmentPage.fillTheApplicationCredentials("firstname","middleName","lastName","Senior QA Lead","email@example.com","06436363","grereyeyey","2026-01-20","dadfafaff");
+        recruitmentPage.saveCandidateApplication();
+        Assert.assertTrue(recruitmentPage.getAddApplicationAssert().isDisplayed());
     }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,7 +25,20 @@ public class UtilCodes {
 
   }
 
-    public By listAssert=By.xpath("//div[@class=\"oxd-table-cell oxd-padding-cell\"]//div[not(*)]");
+  protected By listAssert=By.xpath("//div[@class=\"oxd-table-cell oxd-padding-cell\"]//div[not(*)]");
+
+  @FindBy(css = "input[name=\"firstName\"]")
+  protected WebElement firstNameInput;
+
+  @FindBy(css = "input[name=\"middleName\"]")
+  protected WebElement middleNameInput;
+
+  @FindBy(css = "input[name=\"lastName\"]")
+  protected WebElement lastNameInput;
+
+  @FindBy(xpath = "//div[@class=\"orangehrm-header-container\"]//button")
+  protected WebElement addButton;
+
 
     public List<WebElement> findListAssert(){
         wait.until(ExpectedConditions.presenceOfElementLocated(listAssert));
