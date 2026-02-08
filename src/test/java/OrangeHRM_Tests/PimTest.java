@@ -26,6 +26,7 @@ public class PimTest extends BasePage {
         Assert.assertTrue(!employees.isEmpty(), "Employee list is empty");
 
         for(WebElement element: pim.findListAssert()){
+
             Assert.assertFalse(element.getText().isEmpty());
 
 
@@ -47,6 +48,7 @@ public class PimTest extends BasePage {
         Assert.assertTrue(!reports.isEmpty(), "Reports list is empty");
 
     for(WebElement element: pim.findListAssert()){
+
         Assert.assertFalse(element.getText().isEmpty());
     }
 

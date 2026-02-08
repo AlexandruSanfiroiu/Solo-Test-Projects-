@@ -52,42 +52,25 @@ public class RecruitmentPage extends UtilCodes {
        @FindBy(css = "button[type=\"submit\"]")
        private WebElement saveButton;
 
-       @FindBy(xpath = "(//button[@type=\"button\"])[5]")
+       @FindBy(css = "button[class=\"oxd-button oxd-button--medium oxd-button--success\"]")
        private WebElement shortlistButton;
+
+       @FindBy(css = "button[class=\"oxd-button oxd-button--medium oxd-button--danger\"]")
+       private WebElement rejectButton;
+
 
        @FindBy(css = "li[class=\"oxd-topbar-body-nav-tab\"]")
        private WebElement vacancySection;
 
+
+
        //Asserts
        @FindBy(css = "div[class=\"oxd-toast oxd-toast--success oxd-toast-container--toast\"]")
-       private WebElement addApplicationAssert;
+       private WebElement successfulAssert;
 
-       @FindBy(xpath = "(//p[@class=\"oxd-text oxd-text--p\"])[1]")
-       private WebElement nameAssert;
 
-       @FindBy(xpath = "(//p[@class=\"oxd-text oxd-text--p\"])[2]")
-       private WebElement vacancyAssert;
-
-       @FindBy(xpath = "(//p[@class=\"oxd-text oxd-text--p\"])[3]")
-       private WebElement hiringManagerAssert;
-
-       @FindBy(css = "p[class=\"oxd-text oxd-text--p oxd-text--subtitle-2\"]")
-       private WebElement statusAssert;
-
-    public WebElement getAddApplicationAssert() {
-        return addApplicationAssert;
-    }
-    public WebElement getNameAssert() {
-        return nameAssert;
-    }
-    public WebElement getVacancyAssert() {
-        return vacancyAssert;
-    }
-    public WebElement getHiringManagerAssert() {
-        return hiringManagerAssert;
-    }
-    public WebElement getStatusAssert() {
-        return statusAssert;
+    public WebElement getSuccessfulAssert() {
+        return successfulAssert;
     }
 
     public void openTheRecruitmentPage () {
@@ -113,7 +96,7 @@ public class RecruitmentPage extends UtilCodes {
         lastNameInput.sendKeys(lastName);
         vacanciesSection.click();
         By vacancyOptions=By.xpath("//span[contains(text(), '"+Option+"')]");
-        wait.until(ExpectedConditions.presenceOfElementLocated(vacancyOptions));
+        wait.until(ExpectedConditions.elementToBeClickable(vacancyOptions));
         driver.findElement(vacancyOptions).click();
         emailInput.sendKeys(email);
         contactNumberInput.sendKeys(contactNumber);
@@ -128,5 +111,34 @@ public class RecruitmentPage extends UtilCodes {
         public void saveCandidateApplication(){
             saveButton.click();
         }
+
+        public void shortlistOptionPath(){
+        wait.until(ExpectedConditions.elementToBeClickable(shortlistButton));
+        shortlistButton.click();
+
+
+
+        }
+
+        public void rejectOptionPath(){
+        wait.until(ExpectedConditions.elementToBeClickable(rejectButton));
+        rejectButton.click();
+
+
+
+        }
+        public void saveShortlistCandidate(){
+            wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+            saveButton.click();
+        }
+
+    public boolean isSuccessToastDisplayedAssert() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(successfulAssert));
+            return successfulAssert.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
     }
 
