@@ -77,17 +77,17 @@ public class RecruitmentTest extends BasePage {
     public void Shortlist_Or_Reject_The_Candidate_Test() {
 
         //false=reject | true=shortlist
-        boolean choice = false;
+        boolean choice = true;
         HelperTests helperTests = new HelperTests(driver);
         RecruitmentPage recruitment = new RecruitmentPage(driver);
         helperTests.createCandidate();
 
         if (choice) {
             recruitment.shortlistOptionPath();
-
         }else {
             recruitment.rejectOptionPath();
         }
+
         recruitment.saveShortlistCandidate();
         if(recruitment.getUnexpectedErrorAssert().isDisplayed()) {
             Assert.fail("Unexpected Error");

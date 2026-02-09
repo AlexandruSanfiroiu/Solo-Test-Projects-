@@ -125,6 +125,7 @@ public class RecruitmentPage extends UtilCodes {
         }
         public void saveShortlistCandidate(){
             wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+            wait.until(driver1 -> saveButton.isEnabled());
             saveButton.click();
         }
 

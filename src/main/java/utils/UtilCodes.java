@@ -43,7 +43,7 @@ public class UtilCodes {
   @FindBy(css = "button[type=\"submit\"]")
   protected WebElement saveButton;
 
-  @FindBy(css = "div[class=\"oxd-toast oxd-toast--success oxd-toast-container--toast\"]")
+  @FindBy(xpath = "//button[normalize-space()='Save']")
   protected WebElement successfulAssert;
 
   @FindBy(css = "div[class=\"oxd-toast oxd-toast--error oxd-toast-container--toast\"]")
