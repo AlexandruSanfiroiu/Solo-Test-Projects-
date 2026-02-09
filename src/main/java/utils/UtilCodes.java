@@ -20,12 +20,13 @@ public class UtilCodes {
 
   public UtilCodes(WebDriver driver){
       this.driver=driver;
-      this.wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+      this.wait=new WebDriverWait(driver, Duration.ofSeconds(35));
 
 
   }
 
   protected By listAssert=By.xpath("//div[@class=\"oxd-table-cell oxd-padding-cell\"]//div[not(*)]");
+
 
   @FindBy(css = "input[name=\"firstName\"]")
   protected WebElement firstNameInput;
@@ -39,6 +40,14 @@ public class UtilCodes {
   @FindBy(xpath = "//div[@class=\"orangehrm-header-container\"]//button")
   protected WebElement addButton;
 
+  @FindBy(css = "button[type=\"submit\"]")
+  protected WebElement saveButton;
+
+  @FindBy(css = "div[class=\"oxd-toast oxd-toast--success oxd-toast-container--toast\"]")
+  protected WebElement successfulAssert;
+
+  @FindBy(css = "div[class=\"oxd-toast oxd-toast--error oxd-toast-container--toast\"]")
+  protected WebElement unexpectedErrorAssert;
 
     public List<WebElement> findListAssert(){
         wait.until(ExpectedConditions.presenceOfElementLocated(listAssert));

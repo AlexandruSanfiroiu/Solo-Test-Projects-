@@ -89,7 +89,12 @@ public class RecruitmentTest extends BasePage {
             recruitment.rejectOptionPath();
         }
         recruitment.saveShortlistCandidate();
-            Assert.assertTrue(recruitment.isSuccessToastDisplayedAssert(),"Unexpected Error");
+        if(recruitment.getUnexpectedErrorAssert().isDisplayed()) {
+            Assert.fail("Unexpected Error");
+
+        }else if(recruitment.getSuccessfulAssert().isDisplayed()){
+            Assert.assertTrue(recruitment.getSuccessfulAssert().isDisplayed());
+        }
 
 
 

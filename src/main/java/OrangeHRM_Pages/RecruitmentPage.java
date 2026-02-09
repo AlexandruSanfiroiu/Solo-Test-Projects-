@@ -29,48 +29,44 @@ public class RecruitmentPage extends UtilCodes {
     @FindBy(css = "div[class=\"oxd-select-wrapper\"]")
     private WebElement vacanciesSection;
 
+    @FindBy(xpath = "(//input[@placeholder=\"Type here\"])[1]")
+    private WebElement emailInput;
 
+    @FindBy(xpath = "(//input[@placeholder=\"Type here\"])[2]")
+    private WebElement contactNumberInput;
 
-        @FindBy(xpath = "(//input[@placeholder=\"Type here\"])[1]")
-        private WebElement emailInput;
+    @FindBy(xpath = "(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[7]")
+    private WebElement keywordInput;
 
-        @FindBy(xpath = "(//input[@placeholder=\"Type here\"])[2]")
-        private WebElement contactNumberInput;
+    @FindBy(xpath = "//div[@class=\"oxd-date-input\"]//input")
+    private WebElement dateInput;
 
-       @FindBy(xpath = "(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[7]")
-       private WebElement keywordInput;
+    @FindBy(xpath = "//div[@class=\"oxd-form-row\"]//textarea")
+    private WebElement noteInput;
 
-       @FindBy(xpath = "//div[@class=\"oxd-date-input\"]//input")
-       private WebElement dateInput;
+    @FindBy(css = "i[class=\"oxd-icon bi-check oxd-checkbox-input-icon\"]")
+    private WebElement consentDataCheckBox;
 
-       @FindBy(xpath = "//div[@class=\"oxd-form-row\"]//textarea")
-       private WebElement noteInput;
+    @FindBy(css = "button[class=\"oxd-button oxd-button--medium oxd-button--success\"]")
+    private WebElement shortlistButton;
 
-       @FindBy(css = "i[class=\"oxd-icon bi-check oxd-checkbox-input-icon\"]")
-       private WebElement consentDataCheckBox;
+    @FindBy(css = "button[class=\"oxd-button oxd-button--medium oxd-button--danger\"]")
+    private WebElement rejectButton;
 
-       @FindBy(css = "button[type=\"submit\"]")
-       private WebElement saveButton;
-
-       @FindBy(css = "button[class=\"oxd-button oxd-button--medium oxd-button--success\"]")
-       private WebElement shortlistButton;
-
-       @FindBy(css = "button[class=\"oxd-button oxd-button--medium oxd-button--danger\"]")
-       private WebElement rejectButton;
-
-
-       @FindBy(css = "li[class=\"oxd-topbar-body-nav-tab\"]")
-       private WebElement vacancySection;
+    @FindBy(css = "li[class=\"oxd-topbar-body-nav-tab\"]")
+    private WebElement vacancySection;
 
 
 
-       //Asserts
-       @FindBy(css = "div[class=\"oxd-toast oxd-toast--success oxd-toast-container--toast\"]")
-       private WebElement successfulAssert;
 
 
     public WebElement getSuccessfulAssert() {
+
         return successfulAssert;
+    }
+    public WebElement getUnexpectedErrorAssert() {
+
+        return unexpectedErrorAssert;
     }
 
     public void openTheRecruitmentPage () {
@@ -86,7 +82,7 @@ public class RecruitmentPage extends UtilCodes {
         }
 
         public void addCandidate(){
-            addButton.click();
+        addButton.click();
         }
 
         public void fillTheApplicationCredentials(String firstName,String middleName,String lastName,String Option,String email,String contactNumber,String keyWords,String dateOfApplication,String notes){
@@ -132,13 +128,6 @@ public class RecruitmentPage extends UtilCodes {
             saveButton.click();
         }
 
-    public boolean isSuccessToastDisplayedAssert() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(successfulAssert));
-            return successfulAssert.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
     }
-    }
+
 
