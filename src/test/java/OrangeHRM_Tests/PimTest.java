@@ -54,4 +54,16 @@ public class PimTest extends BasePage {
 
     }
 
+    @Test
+    public void Add_Employee_Test(){
+        LoginPage login=new LoginPage(driver);
+        PimPage pim=new PimPage(driver);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        login.fillTheLoginCredentials();
+        login.clickTheLoginButton();
+        pim.openThePimPage();
+
+
+    }
+
 }

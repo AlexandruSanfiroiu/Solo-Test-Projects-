@@ -20,7 +20,7 @@ public class UtilCodes {
 
   public UtilCodes(WebDriver driver){
       this.driver=driver;
-      this.wait=new WebDriverWait(driver, Duration.ofSeconds(35));
+      this.wait=new WebDriverWait(driver, Duration.ofSeconds(30));
 
 
   }
@@ -43,11 +43,17 @@ public class UtilCodes {
   @FindBy(css = "button[type=\"submit\"]")
   protected WebElement saveButton;
 
-  @FindBy(xpath = "//button[normalize-space()='Save']")
-  protected WebElement successfulAssert;
 
+//Asserts
   @FindBy(css = "div[class=\"oxd-toast oxd-toast--error oxd-toast-container--toast\"]")
   protected WebElement unexpectedErrorAssert;
+
+  @FindBy(css = "div[class=\"oxd-toast oxd-toast--success oxd-toast-container--toast\"]")
+  protected WebElement successfulAssert;;
+
+
+
+
 
     public List<WebElement> findListAssert(){
         wait.until(ExpectedConditions.presenceOfElementLocated(listAssert));
@@ -56,6 +62,11 @@ public class UtilCodes {
 
     public void scrollToTheElement(By elements){
        WebElement target=wait.until(ExpectedConditions.presenceOfElementLocated(elements));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",target);
+
+    }
+    public void scrollToTheButton(WebElement elements){
+       WebElement target=wait.until(ExpectedConditions.elementToBeClickable(elements));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",target);
 
     }

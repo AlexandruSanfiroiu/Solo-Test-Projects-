@@ -31,6 +31,7 @@ public class RecruitmentTest extends BasePage {
 
     }
 
+
     @Test
     public void Vacancies_List_Test(){
         LoginPage loginPage=new LoginPage(driver);
@@ -51,10 +52,20 @@ public class RecruitmentTest extends BasePage {
     }
 
 
-
-
-
-
+     @Test
+     public void Add_Vacancies_Test(){
+        LoginPage login=new LoginPage(driver);
+        RecruitmentPage recruitment=new RecruitmentPage(driver);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        login.fillTheLoginCredentials();
+        login.clickTheLoginButton();
+        recruitment.openTheRecruitmentPage();
+        recruitment.openTheVacancySection();
+        recruitment.addVacancy();
+        recruitment.fillTheVacancyCredentials("tur5erdg","Account Assistant","A8DCo 4Ys 010Z","7rdht fafafad","32");
+        recruitment.saveVacancy();
+        Assert.assertTrue(recruitment.getSuccessfulAssert().isDisplayed(),"Vacancy Failed");
+     }
 
 
     @Test
@@ -95,9 +106,6 @@ public class RecruitmentTest extends BasePage {
         }else if(recruitment.getSuccessfulAssert().isDisplayed()){
             Assert.assertTrue(recruitment.getSuccessfulAssert().isDisplayed());
         }
-
-
-
 
             }
         }

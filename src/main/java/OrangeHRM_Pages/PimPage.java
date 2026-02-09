@@ -12,7 +12,7 @@ import utils.UtilCodes;
 public class PimPage extends UtilCodes {
 
 
-    public PimPage(WebDriver driver){
+    public PimPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -24,31 +24,14 @@ public class PimPage extends UtilCodes {
     private WebElement reportsSection;
 
 
-
-
-
-    public void openThePimPage(){
+    public void openThePimPage() {
         pimPageOption.click();
         scrollToTheElement(listAssert);
     }
 
-    public void goToTheReportsSection(){
+    public void goToTheReportsSection() {
         reportsSection.click();
         scrollToTheElement(listAssert);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

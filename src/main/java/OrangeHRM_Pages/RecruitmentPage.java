@@ -2,13 +2,16 @@ package OrangeHRM_Pages;
 
 
 
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.UtilCodes;
 
-
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 
 
 public class RecruitmentPage extends UtilCodes {
@@ -21,13 +24,12 @@ public class RecruitmentPage extends UtilCodes {
     }
 
 
-
     //Elements
     @FindBy(css = "a[href=\"/web/index.php/recruitment/viewRecruitmentModule\"]")
     private WebElement recruitmentPage;
 
     @FindBy(css = "div[class=\"oxd-select-wrapper\"]")
-    private WebElement vacanciesSection;
+    private WebElement jobsOptions;
 
     @FindBy(xpath = "(//input[@placeholder=\"Type here\"])[1]")
     private WebElement emailInput;
@@ -56,26 +58,38 @@ public class RecruitmentPage extends UtilCodes {
     @FindBy(css = "li[class=\"oxd-topbar-body-nav-tab\"]")
     private WebElement vacancySection;
 
+    @FindBy(css="div[role=\"listbox\"]")
+    private WebElement hiringManagersList;
 
+    @FindBy(xpath = "(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[1]")
+    private WebElement vacancyNameInput;
 
+    @FindBy(xpath ="(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[2]")
+    private WebElement hiringManagers;
 
+    @FindBy(xpath ="(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[3]")
+    private WebElement numberOfPositionsInput;
+
+    @FindBy(css = "textarea[class=\"oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical\"]")
+    private WebElement descriptionInput;
 
     public WebElement getSuccessfulAssert() {
 
         return successfulAssert;
     }
     public WebElement getUnexpectedErrorAssert() {
-
         return unexpectedErrorAssert;
+    }
+
+    public void openTheVacancySection () {
+        vacancySection.click();
     }
 
     public void openTheRecruitmentPage () {
             recruitmentPage.click();
         }
 
-        public void openTheVacancySection () {
-            vacancySection.click();
-        }
+
 
         public void scrollToTheList () {
             scrollToTheElement(listAssert);
@@ -85,13 +99,17 @@ public class RecruitmentPage extends UtilCodes {
         addButton.click();
         }
 
+        public void addVacancy(){
+        addButton.click();
+        }
+
         public void fillTheApplicationCredentials(String firstName,String middleName,String lastName,String Option,String email,String contactNumber,String keyWords,String dateOfApplication,String notes){
+        By vacancyOptions=By.xpath("//span[contains(text(), '"+Option+"')]");
         wait.until(ExpectedConditions.visibilityOf(firstNameInput));
         firstNameInput.sendKeys(firstName);
         middleNameInput.sendKeys(middleName);
         lastNameInput.sendKeys(lastName);
-        vacanciesSection.click();
-        By vacancyOptions=By.xpath("//span[contains(text(), '"+Option+"')]");
+        jobsOptions.click();
         wait.until(ExpectedConditions.elementToBeClickable(vacancyOptions));
         driver.findElement(vacancyOptions).click();
         emailInput.sendKeys(email);
@@ -104,7 +122,27 @@ public class RecruitmentPage extends UtilCodes {
 
         }
 
+        public void fillTheVacancyCredentials(String vacancyName,String option,String managerName,String description,String numbersOfPositions) {
+            By jobOption = By.xpath("//span[contains(text(), '" + option + "')]");
+            By hiringManger=By.xpath("//span[normalize-space()='"+managerName+"']");
+            vacancyNameInput.sendKeys(vacancyName);
+            jobsOptions.click();
+            driver.findElement(jobOption).click();
+            hiringManagers.sendKeys(managerName);
+            driver.findElement(hiringManger).click();
+            descriptionInput.sendKeys(description);
+            numberOfPositionsInput.sendKeys(numbersOfPositions);
+
+
+        }
+
+
         public void saveCandidateApplication(){
+            saveButton.click();
+        }
+
+        public void saveVacancy(){
+        scrollToTheButton(saveButton);
             saveButton.click();
         }
 
@@ -125,7 +163,6 @@ public class RecruitmentPage extends UtilCodes {
         }
         public void saveShortlistCandidate(){
             wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-            wait.until(driver1 -> saveButton.isEnabled());
             saveButton.click();
         }
 
