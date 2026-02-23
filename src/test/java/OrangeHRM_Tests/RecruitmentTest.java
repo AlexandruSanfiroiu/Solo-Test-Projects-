@@ -62,9 +62,13 @@ public class RecruitmentTest extends BasePage {
         recruitment.openTheRecruitmentPage();
         recruitment.openTheVacancySection();
         recruitment.addVacancy();
-        recruitment.fillTheVacancyCredentials("tur5erdg","Account Assistant","A8DCo 4Ys 010Z","7rdht fafafad","32");
+        //Put a different vacancy name at every test
+        recruitment.fillTheVacancyCredentials("name432","QA Engineer","yedghjb1 ru84 90jsnd","7rdht fafafad","32");
         recruitment.saveVacancy();
-        Assert.assertTrue(recruitment.getSuccessfulAssert().isDisplayed(),"Vacancy Failed");
+
+        Assert.assertTrue(recruitment.getCreatedVacancyAssert().isDisplayed());
+
+
      }
 
 
@@ -81,25 +85,26 @@ public class RecruitmentTest extends BasePage {
         recruitmentPage.fillTheApplicationCredentials("firstname","middleName","lastName","Senior QA Lead","email@example.com","06436363","grereyeyey","2026-01-20","dadfafaff");
         recruitmentPage.saveCandidateApplication();
         Assert.assertTrue(recruitmentPage.getSuccessfulAssert().isDisplayed());
+
     }
 
-    
+
     @Test
     public void Shortlist_Or_Reject_The_Candidate_Test() {
 
         //false=reject | true=shortlist
-        boolean choice = true;
+        boolean accept = true;
         HelperTests helperTests = new HelperTests(driver);
         RecruitmentPage recruitment = new RecruitmentPage(driver);
         helperTests.createCandidate();
 
-        if (choice) {
+        if (accept) {
             recruitment.shortlistOptionPath();
         }else {
             recruitment.rejectOptionPath();
         }
 
-        recruitment.saveShortlistCandidate();
+        recruitment.saveVacancy();
         if(recruitment.getUnexpectedErrorAssert().isDisplayed()) {
             Assert.fail("Unexpected Error");
 
@@ -107,12 +112,8 @@ public class RecruitmentTest extends BasePage {
             Assert.assertTrue(recruitment.getSuccessfulAssert().isDisplayed());
         }
 
-            }
-        }
-
-
-
-
+    }
+}
 
 
 

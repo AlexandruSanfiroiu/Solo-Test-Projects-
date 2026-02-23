@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import utils.UtilCodes;
 
 import java.util.Date;
@@ -58,28 +59,37 @@ public class RecruitmentPage extends UtilCodes {
     @FindBy(css = "li[class=\"oxd-topbar-body-nav-tab\"]")
     private WebElement vacancySection;
 
-    @FindBy(css="div[role=\"listbox\"]")
+    @FindBy(css = "div[role=\"listbox\"]")
     private WebElement hiringManagersList;
 
     @FindBy(xpath = "(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[1]")
     private WebElement vacancyNameInput;
 
-    @FindBy(xpath ="(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[2]")
+    @FindBy(xpath = "(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[2]")
     private WebElement hiringManagers;
 
-    @FindBy(xpath ="(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[3]")
+    @FindBy(xpath = "(//div[@class=\"oxd-input-group oxd-input-field-bottom-space\"]//input)[3]")
     private WebElement numberOfPositionsInput;
 
     @FindBy(css = "textarea[class=\"oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical\"]")
     private WebElement descriptionInput;
 
-    public WebElement getSuccessfulAssert() {
+    //Asserts
 
+    public WebElement getSuccessfulAssert() {
+        wait.until(ExpectedConditions.visibilityOf(successfulAssert));
         return successfulAssert;
     }
-    public WebElement getUnexpectedErrorAssert() {
-        return unexpectedErrorAssert;
+
+    public WebElement getCreatedVacancyAssert() {
+        wait.until(ExpectedConditions.visibilityOf(createdVacancyAssert));
+        return createdVacancyAssert;
     }
+
+   public WebElement getUnexpectedErrorAssert() {
+       wait.until(ExpectedConditions.visibilityOf(unexpectedErrorAssert));
+       return unexpectedErrorAssert;
+   }
 
     public void openTheVacancySection () {
         vacancySection.click();
@@ -104,14 +114,14 @@ public class RecruitmentPage extends UtilCodes {
         }
 
         public void fillTheApplicationCredentials(String firstName,String middleName,String lastName,String Option,String email,String contactNumber,String keyWords,String dateOfApplication,String notes){
-        By vacancyOptions=By.xpath("//span[contains(text(), '"+Option+"')]");
+        By vacancyOption=By.xpath("//span[contains(text(), '"+Option+"')]");
         wait.until(ExpectedConditions.visibilityOf(firstNameInput));
         firstNameInput.sendKeys(firstName);
         middleNameInput.sendKeys(middleName);
         lastNameInput.sendKeys(lastName);
         jobsOptions.click();
-        wait.until(ExpectedConditions.elementToBeClickable(vacancyOptions));
-        driver.findElement(vacancyOptions).click();
+        wait.until(ExpectedConditions.elementToBeClickable(vacancyOption));
+        driver.findElement(vacancyOption).click();
         emailInput.sendKeys(email);
         contactNumberInput.sendKeys(contactNumber);
         keywordInput.sendKeys(keyWords);
@@ -123,12 +133,13 @@ public class RecruitmentPage extends UtilCodes {
         }
 
         public void fillTheVacancyCredentials(String vacancyName,String option,String managerName,String description,String numbersOfPositions) {
-            By jobOption = By.xpath("//span[contains(text(), '" + option + "')]");
+            By jobOption = By.xpath("//span[normalize-space()='" + option + "']");
             By hiringManger=By.xpath("//span[normalize-space()='"+managerName+"']");
             vacancyNameInput.sendKeys(vacancyName);
             jobsOptions.click();
             driver.findElement(jobOption).click();
             hiringManagers.sendKeys(managerName);
+            wait.until(ExpectedConditions.presenceOfElementLocated(hiringManger));
             driver.findElement(hiringManger).click();
             descriptionInput.sendKeys(description);
             numberOfPositionsInput.sendKeys(numbersOfPositions);
@@ -138,21 +149,19 @@ public class RecruitmentPage extends UtilCodes {
 
 
         public void saveCandidateApplication(){
+        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
             saveButton.click();
         }
 
         public void saveVacancy(){
-        scrollToTheButton(saveButton);
+            wait.until(ExpectedConditions.elementToBeClickable(saveButton));
             saveButton.click();
         }
 
         public void shortlistOptionPath(){
         wait.until(ExpectedConditions.elementToBeClickable(shortlistButton));
         shortlistButton.click();
-
-
-
-        }
+    }
 
         public void rejectOptionPath(){
         wait.until(ExpectedConditions.elementToBeClickable(rejectButton));
@@ -161,10 +170,7 @@ public class RecruitmentPage extends UtilCodes {
 
 
         }
-        public void saveShortlistCandidate(){
-            wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-            saveButton.click();
-        }
+
 
     }
 

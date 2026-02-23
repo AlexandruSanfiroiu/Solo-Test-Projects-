@@ -20,14 +20,14 @@ public class UtilCodes {
 
   public UtilCodes(WebDriver driver){
       this.driver=driver;
-      this.wait=new WebDriverWait(driver, Duration.ofSeconds(30));
+      this.wait=new WebDriverWait(driver, Duration.ofSeconds(40));
 
 
   }
 
   protected By listAssert=By.xpath("//div[@class=\"oxd-table-cell oxd-padding-cell\"]//div[not(*)]");
 
-
+//WebElements
   @FindBy(css = "input[name=\"firstName\"]")
   protected WebElement firstNameInput;
 
@@ -44,14 +44,16 @@ public class UtilCodes {
   protected WebElement saveButton;
 
 
-//Asserts
-  @FindBy(css = "div[class=\"oxd-toast oxd-toast--error oxd-toast-container--toast\"]")
-  protected WebElement unexpectedErrorAssert;
+  //Asserts
 
-  @FindBy(css = "div[class=\"oxd-toast oxd-toast--success oxd-toast-container--toast\"]")
-  protected WebElement successfulAssert;;
+    @FindBy(css = "div[class=\"oxd-toast oxd-toast--error oxd-toast-container--toast\"]")
+    protected WebElement unexpectedErrorAssert;
 
+    @FindBy(css = "i[class=\"oxd-icon bi-check2 oxd-toast-icon\"]")
+    protected WebElement successfulAssert;
 
+    @FindBy(xpath = "//h6[normalize-space()='Edit Vacancy']")
+    protected WebElement createdVacancyAssert;
 
 
 
