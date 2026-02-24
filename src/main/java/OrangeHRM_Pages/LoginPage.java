@@ -5,8 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ConfigReader;
 
 
+import javax.security.auth.login.Configuration;
 import java.time.Duration;
 
 public class LoginPage {
@@ -49,8 +51,8 @@ public class LoginPage {
     }
 
     public void fillTheLoginCredentials(){
-        usernameInput.sendKeys("Admin");
-        passwordInput.sendKeys("admin123");
+        usernameInput.sendKeys(ConfigReader.getUsername());
+        passwordInput.sendKeys(ConfigReader.getPassword());
     }
     public void fillTheLoginWithInvalidCredentials(){
         usernameInput.sendKeys("user");

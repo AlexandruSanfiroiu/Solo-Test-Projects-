@@ -2,17 +2,15 @@ package OrangeHRM_Pages;
 
 
 
-import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import utils.UtilCodes;
 
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
+
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 
 public class RecruitmentPage extends UtilCodes {
@@ -149,22 +147,22 @@ public class RecruitmentPage extends UtilCodes {
 
 
         public void saveCandidateApplication(){
-        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+        wait.until(elementToBeClickable(saveButton));
             saveButton.click();
         }
 
         public void saveVacancy(){
-            wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+            wait.until(elementToBeClickable(saveButton));
             saveButton.click();
         }
 
         public void shortlistOptionPath(){
-        wait.until(ExpectedConditions.elementToBeClickable(shortlistButton));
+        wait.until(elementToBeClickable(shortlistButton));
         shortlistButton.click();
     }
 
         public void rejectOptionPath(){
-        wait.until(ExpectedConditions.elementToBeClickable(rejectButton));
+        wait.until(elementToBeClickable(rejectButton));
         rejectButton.click();
 
 
