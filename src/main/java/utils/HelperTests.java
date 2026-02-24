@@ -2,11 +2,7 @@ package utils;
 
 import OrangeHRM_Pages.LoginPage;
 import OrangeHRM_Pages.RecruitmentPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -15,7 +11,7 @@ import java.time.Duration;
 public class HelperTests {
     WebDriver driver;
     WebDriverWait wait;
-    By candidatesInformation = By.xpath("(//div[@class=\"oxd-form-row\"])[1]");
+
 
     public HelperTests(WebDriver driver) {
         this.driver = driver;
