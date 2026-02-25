@@ -20,7 +20,7 @@ public class UtilCodes {
 
   public UtilCodes(WebDriver driver){
       this.driver=driver;
-      this.wait=new WebDriverWait(driver, Duration.ofSeconds(40));
+      this.wait=new WebDriverWait(driver, Duration.ofSeconds(45));
 
 
   }
@@ -55,7 +55,8 @@ public class UtilCodes {
     @FindBy(xpath = "//h6[normalize-space()='Edit Vacancy']")
     protected WebElement createdVacancyAssert;
 
-
+    @FindBy(xpath = "//span[normalize-space()='Required']")
+    protected WebElement requiredAssert;
 
     public List<WebElement> findListAssert(){
         wait.until(ExpectedConditions.presenceOfElementLocated(listAssert));

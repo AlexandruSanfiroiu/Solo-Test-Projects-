@@ -113,6 +113,20 @@ public class RecruitmentTest extends BasePage {
         }
 
     }
+
+    @Test
+    public void Add_Vacancy_With_No_Information_Test(){
+        LoginPage login=new LoginPage(driver);
+        RecruitmentPage recruitment=new RecruitmentPage(driver);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        login.fillTheLoginCredentials();
+        login.clickTheLoginButton();
+        recruitment.openTheRecruitmentPage();
+        recruitment.openTheVacancySection();
+        recruitment.addVacancy();
+        recruitment.saveVacancy();
+        Assert.assertEquals(recruitment.getRequiredAssert().getText(),"Required");
+    }
 }
 
 

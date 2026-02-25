@@ -15,7 +15,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 
 public class RecruitmentPage extends UtilCodes {
 
-
     public RecruitmentPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -89,6 +88,10 @@ public class RecruitmentPage extends UtilCodes {
        return unexpectedErrorAssert;
    }
 
+   public WebElement getRequiredAssert(){
+        wait.until(ExpectedConditions.visibilityOf(requiredAssert));
+        return requiredAssert;
+   }
     public void openTheVacancySection () {
         vacancySection.click();
     }
@@ -129,6 +132,8 @@ public class RecruitmentPage extends UtilCodes {
         consentDataCheckBox.click();
 
         }
+
+
 
         public void fillTheVacancyCredentials(String vacancyName,String option,String managerName,String description,String numbersOfPositions) {
             By jobOption = By.xpath("//span[normalize-space()='" + option + "']");
