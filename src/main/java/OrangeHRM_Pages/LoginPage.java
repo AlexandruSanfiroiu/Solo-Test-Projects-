@@ -6,9 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ConfigReader;
-
-
-import javax.security.auth.login.Configuration;
 import java.time.Duration;
 
 public class LoginPage {

@@ -20,7 +20,7 @@ public class UtilCodes {
 
   public UtilCodes(WebDriver driver){
       this.driver=driver;
-      this.wait=new WebDriverWait(driver, Duration.ofSeconds(45));
+      this.wait=new WebDriverWait(driver, Duration.ofSeconds(35));
 
 
   }
@@ -73,5 +73,7 @@ public class UtilCodes {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",target);
 
     }
+
+
 
 }

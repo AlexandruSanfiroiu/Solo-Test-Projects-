@@ -72,7 +72,6 @@ public class RecruitmentPage extends UtilCodes {
     private WebElement descriptionInput;
 
     //Asserts
-
     public WebElement getSuccessfulAssert() {
         wait.until(ExpectedConditions.visibilityOf(successfulAssert));
         return successfulAssert;

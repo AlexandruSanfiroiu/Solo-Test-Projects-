@@ -13,19 +13,18 @@ import java.util.List;
 public class PimTest extends BasePage {
 
 
-
     @Test
-    public void Employees_List_Test(){
-        LoginPage login=new LoginPage(driver);
-        PimPage pim=new PimPage(driver);
+    public void Employees_List_Test() {
+        LoginPage login = new LoginPage(driver);
+        PimPage pim = new PimPage(driver);
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         login.fillTheLoginCredentials();
         login.clickTheLoginButton();
         pim.openThePimPage();
-        List<WebElement> employees=pim.findListAssert();
+        List<WebElement> employees = pim.findListAssert();
         Assert.assertTrue(!employees.isEmpty(), "Employee list is empty");
 
-        for(WebElement element: pim.findListAssert()){
+        for (WebElement element : pim.findListAssert()) {
 
             Assert.assertFalse(element.getText().isEmpty());
 
@@ -36,32 +35,43 @@ public class PimTest extends BasePage {
     }
 
     @Test
-    public void Reports_List_Test(){
-    LoginPage login=new LoginPage(driver);
-    PimPage pim=new PimPage(driver);
-    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-    login.fillTheLoginCredentials();
-    login.clickTheLoginButton();
-    pim.openThePimPage();
-    pim.goToTheReportsSection();
-        List<WebElement> reports=pim.findListAssert();
-        Assert.assertTrue(!reports.isEmpty(), "Reports list is empty");
-
-    for(WebElement element: pim.findListAssert()){
-
-        Assert.assertFalse(element.getText().isEmpty());
-    }
-
-    }
-
-    @Test
-    public void Add_Employee_Test(){
-        LoginPage login=new LoginPage(driver);
-        PimPage pim=new PimPage(driver);
+    public void Reports_List_Test() {
+        LoginPage login = new LoginPage(driver);
+        PimPage pim = new PimPage(driver);
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         login.fillTheLoginCredentials();
         login.clickTheLoginButton();
         pim.openThePimPage();
+        pim.goToTheReportsSection();
+        List<WebElement> reports = pim.findListAssert();
+        Assert.assertTrue(!reports.isEmpty(), "Reports list is empty");
+
+        for (WebElement element : pim.findListAssert()) {
+
+            Assert.assertFalse(element.getText().isEmpty());
+        }
+
+    }
+
+    @Test
+    public void Create_Employee_Test() {
+       String firstname="Name";
+       String middleName="Name";
+       String lastName="Name";
+       String name=firstname+" "+lastName;
+
+       LoginPage login = new LoginPage(driver);
+        PimPage pim = new PimPage(driver);
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        login.fillTheLoginCredentials();
+        login.clickTheLoginButton();
+        pim.openThePimPage();
+        pim.AddEmployee();
+        pim.fillTheEmployeeInformation(firstname,middleName,lastName,"4325");
+        //The password must contain at least 1 number and the username must be 5 characters and different at each test
+        pim.createLoginDetails("yyuf67cihyuiuo","password1");
+        pim.save();
+        Assert.assertEquals(pim.getEmployeeNameAssert(name).getText(),name);
 
 
     }
