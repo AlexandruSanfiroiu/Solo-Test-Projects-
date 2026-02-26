@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 
-public class HelperTests {
+public class HelperTests{
     WebDriver driver;
     WebDriverWait wait;
 
@@ -28,7 +28,7 @@ public class HelperTests {
         recruitmentPage.openTheRecruitmentPage();
         recruitmentPage.addCandidate();
         //Important note:At vacancy option you need you select the exact vacancy option you have and you can use only numbers at contact number.
-        recruitmentPage.fillTheApplicationCredentials("firstname", "middleName", "lastName", "Senior QA Lead", "email@example.com", "06436363", "grereyeyey", "2026-01-20", "");
+        recruitmentPage.fillTheApplicationCredentials("firstname", "middleName", "lastName", "Senior QA Lead", "email@example.com", "06436363", "grereyeyey", "2026-01-20", "asdda");
         recruitmentPage.saveCandidateApplication();
 
 

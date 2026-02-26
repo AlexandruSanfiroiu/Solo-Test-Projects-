@@ -72,9 +72,20 @@ public class RecruitmentPage extends UtilCodes {
     private WebElement descriptionInput;
 
     //Asserts
-    public WebElement getSuccessfulAssert() {
-        wait.until(ExpectedConditions.visibilityOf(successfulAssert));
-        return successfulAssert;
+
+      public WebElement getApplicationInitiatedAssert() {
+        wait.until(ExpectedConditions.visibilityOf(applicationInitiatedAssert));
+        return applicationInitiatedAssert;
+    }
+
+    public WebElement getShortlistedAssert() {
+        wait.until(ExpectedConditions.visibilityOf(shortlistedAssert));
+        return shortlistedAssert;
+    }
+
+    public WebElement getRejectedAssert(){
+        wait.until(ExpectedConditions.visibilityOf(rejectedAssert));
+        return rejectedAssert;
     }
 
     public WebElement getCreatedVacancyAssert() {
@@ -82,9 +93,9 @@ public class RecruitmentPage extends UtilCodes {
         return createdVacancyAssert;
     }
 
-   public WebElement getUnexpectedErrorAssert() {
-       wait.until(ExpectedConditions.visibilityOf(unexpectedErrorAssert));
-       return unexpectedErrorAssert;
+   public boolean getUnexpectedErrorAssertIsDisplayed() {
+          wait.until(ExpectedConditions.presenceOfElementLocated(unexpectedErrorAssert));
+       return driver.findElement(unexpectedErrorAssert).isDisplayed();
    }
 
    public WebElement getRequiredAssert(){
