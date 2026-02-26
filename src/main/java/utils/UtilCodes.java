@@ -50,7 +50,7 @@ public class UtilCodes {
     @FindBy(xpath = "//p[normalize-space()='Status: Rejected']")
     protected WebElement rejectedAssert;
 
-    @FindBy(xpath = "//p[normalize-space()='Status: Application Initiated")
+    @FindBy(xpath = "//p[normalize-space()='Status: Application Initiated]")
     protected WebElement applicationInitiatedAssert;
 
     @FindBy(xpath = "//p[normalize-space()='Status: Shortlisted']")
